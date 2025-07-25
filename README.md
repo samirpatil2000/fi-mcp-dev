@@ -103,6 +103,34 @@ FI_MCP_PORT=8080 go run .
 
 The server will start on [http://localhost:8080](http://localhost:8080).
 
+## Docker Compose
+
+### Prerequisites
+- Docker Compose ([installation instructions](https://docs.docker.com/compose/install/))
+
+### Run with Docker Compose
+```sh
+docker compose up
+```
+
+This will build the image (if not already built) and start the container.
+
+To run in detached mode:
+```sh
+docker compose up -d
+```
+
+To stop the container:
+```sh
+docker compose down
+```
+
+### Customizing with Docker Compose
+You can modify the `docker-compose.yml` file to:
+- Change the port mapping
+- Set environment variables
+- Mount volumes for persistent data
+
 ## Usage
 - Follow instructions in this [guide](https://fi.money/features/getting-started-with-fi-mcp) to setup client
 - Replace url with locally running server, for example: `http://localhost:8080/mcp/stream`
