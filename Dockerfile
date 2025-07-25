@@ -29,6 +29,9 @@ COPY --from=builder /app/app .
 COPY --from=builder /app/static ./static
 COPY --from=builder /app/test_data_dir ./test_data_dir
 
+# Copy .env file if it exists
+COPY --from=builder /app/.env* ./
+
 # Expose the port the app runs on
 EXPOSE 8080
 

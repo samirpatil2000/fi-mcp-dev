@@ -6,7 +6,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
@@ -17,6 +19,16 @@ import (
 var authMiddleware *middlewares.AuthMiddleware
 
 func main() {
+	// Load .env file if it exists
+	if err := godotenv.Load(); err != nil {
+		log.Println("Warning: .env file not found, using environment variables")
+	}
+
+	// Log environment variables for debugging
+	log.Println("Environment variables:")
+	log.Println("FI_MCP_PORT:", os.Getenv("FI_MCP_PORT"))
+	log.Println("BACKEND_HOST:", os.Getenv("BACKEND_HOST"))
+
 	authMiddleware = middlewares.NewAuthMiddleware()
 	s := server.NewMCPServer(
 		"Hackathon MCP",

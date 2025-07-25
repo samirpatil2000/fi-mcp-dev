@@ -96,9 +96,21 @@ A sample `fetch_net_worth.json` (truncated for brevity):
 go mod tidy
 ```
 
+### Environment Variables
+You can configure the server using environment variables:
+
+- `FI_MCP_PORT`: The port on which the server runs (default: 8080)
+- `BACKEND_HOST`: The host URL for the server (default: http://localhost:8080)
+
+You can set these in a `.env` file (copy from `.env.example`) or as environment variables.
+
 ### Start the server
 ```sh
+# Using environment variables
 FI_MCP_PORT=8080 go run .
+
+# Or using .env file (copy .env.example to .env first)
+go run .
 ```
 
 The server will start on [http://localhost:8080](http://localhost:8080).
