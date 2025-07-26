@@ -51,6 +51,7 @@ func main() {
 	httpMux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	streamableServer := server.NewStreamableHTTPServer(s,
 		server.WithEndpointPath("/stream"),
+		server.WithSessionIdManager(&CustomSessionIdManager{}),
 	)
 	httpMux.Handle("/mcp/", streamableServer)
 	httpMux.HandleFunc("/mockWebPage", webPageHandler)
@@ -107,7 +108,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	authMiddleware.AddSession(sessionId, phoneNumber)
+	//authMiddleware.AddSession(sessionId, phoneNumber)
+	authMiddleware.AddSession("mcp-session-"+phoneNumber, phoneNumber)
 
 	tmpl, err := template.ParseFiles("static/login_successful.html")
 	if err != nil {
