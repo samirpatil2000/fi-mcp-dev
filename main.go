@@ -108,7 +108,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//authMiddleware.AddSession(sessionId, phoneNumber)
+	authMiddleware.AddSession(sessionId, phoneNumber)
 	authMiddleware.AddSession("mcp-session-"+phoneNumber, phoneNumber)
 
 	tmpl, err := template.ParseFiles("static/login_successful.html")
